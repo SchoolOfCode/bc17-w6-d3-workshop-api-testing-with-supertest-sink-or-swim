@@ -8,8 +8,9 @@ import app from '../app.js';
     test('GET /api/health works', async () => {
       const response = await request(app).get('/api/health');
       console.log(response.body);
-    //   expect(response.status).toBe(200);
-    //   expect(response.body).toEqual({
-     //success: true,
-    //payload: "API is running correctly"
+      expect(response.status).lessThanOrEqual(200);
+      expect(response.body).toEqual({
+      success: true,
+      payload: "API is running correctly"
       });
+    });
