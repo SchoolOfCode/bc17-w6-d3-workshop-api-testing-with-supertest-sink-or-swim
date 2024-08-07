@@ -5,12 +5,11 @@ import app from '../app.js';
 
     //Make a test case for the api
 
-    test("GET /api/health works", async () => {
-      const response = await request(app).get("/api/health");
+    test('GET /api/health works', async () => {
+      const response = await request(app).get('/api/health');
       console.log(response.body);
-      //expect(response.status).toBe(200);
-      //expect(response.body).toEqual({
-     // success: true,
+    //   expect(response.status).toBe(200);
+    //   expect(response.body).toEqual({
+     //success: true,
     //payload: "API is running correctly"
       });
-    

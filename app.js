@@ -17,7 +17,7 @@ app.use(express.json());
 /**
  * Useful for checking whether the server itself is running and can provide a simple response to a simple request.
  */
-app.get("/api/health", async (req, res) => {
+app.get("/api/health", (req, res) => {
   res.json({
     success: true,
     payload: "API is running correctly",
@@ -52,29 +52,3 @@ app.use((error, _req, res, _next) => {
 });
 
 export default app;
-
-//Calling the library "supertest" and "express"
-const request = require("supertest");
-const express = require("express");
-
-const app = express();
-//request result of the email in json format
-app.get("/users", function (req, res) {
-  res.status(200).json({ email: "foo@bar.com" });
-});
-//combine responses from "/users" using a get request
-describe("GET /users", function () {
-  it("responds with json", async function () {
-    const response = await request(app).get("/users").set("Accept", "application/json");
-    expect(response.headers["Content-Type"]).toMatch(/json/);
-    expect(response.status).toEqual(200);
-    expect(response.body.email).toEqual("foo@bar.com");
-  });
-});
-//if correct code 200
-
-app.get("/api/health", function (req, res) {
-  res.status(200).json({ status: "healthy" });
-});
-
-module.exports = app; // Export the app for use in tests
