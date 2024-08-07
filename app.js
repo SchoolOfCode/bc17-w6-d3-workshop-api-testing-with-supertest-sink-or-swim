@@ -17,7 +17,7 @@ app.use(express.json());
 /**
  * Useful for checking whether the server itself is running and can provide a simple response to a simple request.
  */
-app.get("/api/health", (req, res) => {
+app.get("/api/health", async (req, res) => {
   res.json({
     success: true,
     payload: "API is running correctly",
