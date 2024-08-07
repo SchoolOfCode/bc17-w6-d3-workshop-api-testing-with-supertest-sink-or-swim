@@ -52,3 +52,24 @@ app.use((error, _req, res, _next) => {
 });
 
 export default app;
+
+//Calling the library "supertest" and "express"
+const request = require("supertest");
+const express = require("express");
+
+const app = express();
+//request result of the email in json format
+app.get("/users", function (req, res) {
+  res.status(200).json({ email: "foo@bar.com" });
+});
+//combine responses from "/users" using a get request
+describe("GET /users", function () {
+  it("responds with json", async function () {
+    const response = await request(app).get("/users").set("Accept", "application/json");
+    expect(response.headers["Content-Type"]).toMatch(/json/);
+    expect(response.status).toEqual(200);
+    expect(response.body.email).toEqual("foo@bar.com");
+  });
+});
+//if correct code 200
+
