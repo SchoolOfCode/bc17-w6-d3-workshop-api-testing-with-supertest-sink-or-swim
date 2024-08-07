@@ -73,3 +73,8 @@ describe("GET /users", function () {
 });
 //if correct code 200
 
+app.get("/api/health", function (req, res) {
+  res.status(200).json({ status: "healthy" });
+});
+
+module.exports = app; // Export the app for use in tests
